@@ -1,0 +1,15 @@
+service:
+  name: applictions-service
+  port: 8090
+  tags: ['api']
+consul:
+  host: 39.103.176.179
+  port: 10008
+  check:
+    protocol: http
+    route: /health
+    interval: 30s
+    timeout: 3s
+    maxRetry: 5
+    retryInterval: 5s
+    deregisterCriticalServiceAfter: 60m
