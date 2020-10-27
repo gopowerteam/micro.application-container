@@ -2,6 +2,7 @@ import { Inject, Injectable } from '@nestjs/common'
 import { APP_CONFIG_PROVIDER, APP_CONSUL_PROVIDER } from 'src/core/constants'
 import { ConsulService } from '../modules/consul/services/consul.service'
 import { ConfigService } from '../modules/config/services/config.service'
+import { getIPAddress } from 'src/common'
 import * as fs from 'fs'
 import * as path from 'path'
 import { resolve } from 'path'
@@ -26,6 +27,8 @@ export class ApplicationService {
       .map(
         config =>
           new Promise((resolve, reject) => {
+            // 设置宿主地址
+            config.host = getIPAddress()
             this.consulService.consul.kv.set(
               `${APPLICATION_CONFIG_PATH}/${config.name}`,
               JSON.stringify(config),
