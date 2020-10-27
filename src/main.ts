@@ -9,7 +9,8 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
     logger: console
   }).then(Application.initialize)
-
+  // 启动跨域支持
+  app.enableCors()
   // 获取配置服务
   const config = app.get(APP_CONFIG_PROVIDER)
   // 获取监听端口
