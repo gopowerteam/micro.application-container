@@ -1,4 +1,4 @@
-import { Inject, Injectable } from '@nestjs/common'
+import { Inject, Injectable, Logger } from '@nestjs/common'
 import { APP_CONFIG_PROVIDER, APP_CONSUL_PROVIDER } from 'src/core/constants'
 import { ConsulService } from '../modules/consul/services/consul.service'
 import { ConfigService } from '../modules/config/services/config.service'
@@ -42,8 +42,13 @@ export class ApplicationService {
    * 获取插件列表
    */
   getApplications() {
-    const dirs = fs.readdirSync(path.join(__dirname, '..', '..', APPLICATION_DIR))
-    return dirs.map(dir => path.join(APPLICATION_DIR, dir)).filter(dir => fs.statSync(dir).isDirectory())
+    try {
+      const dirs = fs.readdirSync(path.join(__dirname, '..', APPLICATION_DIR))
+      return dirs.map(dir => path.join(APPLICATION_DIR, dir)).filter(dir => fs.statSync(dir).isDirectory())
+    } catch (err) {
+      console.error('应用加载异常', err)
+      return []
+    }
   }
 
   /**

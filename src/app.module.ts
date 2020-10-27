@@ -1,6 +1,4 @@
-import { Inject, Module } from '@nestjs/common'
-import { APP_CONSUL_PROVIDER, APP_CONFIG_PROVIDER } from 'src/core/constants'
-
+import { Module } from '@nestjs/common'
 import { ServeStaticModule } from '@nestjs/serve-static/dist/serve-static.module'
 import { join } from 'path'
 import { AppController } from './app.controller'
