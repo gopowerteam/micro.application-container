@@ -20,6 +20,7 @@ pipeline {
           ) {
             def dockerImage = docker.build("${CODING_DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_VERSION}", "-f ${DOCKERFILE_PATH} ${DOCKER_BUILD_CONTEXT}")
             dockerImage.push()
+            dockerImage.push('latest')
           }
         }
 
