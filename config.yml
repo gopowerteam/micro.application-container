@@ -1,5 +1,6 @@
 service:
   name: applictions-service
+  host: 39.103.176.179
   port: 8090
   tags: ['web']
 consul:
