@@ -28,7 +28,7 @@ export class ApplicationService {
         config =>
           new Promise((resolve, reject) => {
             // 设置宿主地址
-            config.host = getIPAddress()
+            config.host = this.configService.get('service.host', getIPAddress())
             this.consulService.consul.kv.set(
               `${APPLICATION_CONFIG_PATH}/${config.name}`,
               JSON.stringify(config),
