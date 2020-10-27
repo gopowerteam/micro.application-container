@@ -18,8 +18,8 @@ pipeline {
             "${CCI_CURRENT_WEB_PROTOCOL}://${CODING_DOCKER_REG_HOST}",
             "${CODING_ARTIFACTS_CREDENTIALS_ID}"
           ) {
-            def dockerImage = docker.build("${CODING_DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_VERSION}", "-f ${DOCKERFILE_PATH} ${DOCKER_BUILD_CONTEXT}")
-            dockerImage.push('latest')
+            def dockerImage = docker.build("${CODING_DOCKER_IMAGE_NAME}", "-f ${DOCKERFILE_PATH} ${DOCKER_BUILD_CONTEXT}")
+            dockerImage.push("${DOCKER_IMAGE_VERSION}")
           }
         }
 
