@@ -19,7 +19,7 @@ pipeline {
             "${CODING_ARTIFACTS_CREDENTIALS_ID}"
           ) {
             def dockerImage = docker.build("${CODING_DOCKER_IMAGE_NAME}", "-f ${DOCKERFILE_PATH} ${DOCKER_BUILD_CONTEXT}")
-            dockerImage.push("${DOCKER_IMAGE_VERSION}")
+            dockerImage.push("latest")
           }
         }
 
