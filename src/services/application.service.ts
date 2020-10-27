@@ -43,8 +43,9 @@ export class ApplicationService {
    */
   getApplications() {
     try {
-      const dirs = fs.readdirSync(path.join(__dirname, '..', APPLICATION_DIR))
-      return dirs.map(dir => path.join(APPLICATION_DIR, dir)).filter(dir => fs.statSync(dir).isDirectory())
+      const root = path.join(__dirname, '..', '..', APPLICATION_DIR)
+      const dirs = fs.readdirSync(root)
+      return dirs.map(dir => path.join(root, dir)).filter(dir => fs.statSync(dir).isDirectory())
     } catch (err) {
       console.error('应用加载异常', err)
       return []
