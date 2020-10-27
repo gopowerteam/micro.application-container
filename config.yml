@@ -1,7 +1,7 @@
 service:
   name: applictions-service
   port: 8090
-  tags: ['api']
+  tags: ['web']
 consul:
   host: 39.103.176.179
   port: 10008

@@ -28,7 +28,7 @@ export class ConsulService {
     // 加载service配置
     this.serviceName = config.get('service.name')
     this.servicePort = parseInt(config.get('service.port'), 10)
-    this.serviceAddress = config.get('service.address', getIPAddress())
+    this.serviceAddress = config.get('service.host', getIPAddress())
     this.serviceId = MD5(`${this.serviceName}@${this.serviceAddress}:${this.servicePort}`).toString()
     this.serviceTags = config.get('service.tags', ['api']).concat([getCurrentEnv()])
     // 加载check配置
