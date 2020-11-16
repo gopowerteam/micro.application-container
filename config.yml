@@ -1,9 +1,10 @@
 service:
   name: applictions-service
-  host: 39.103.176.179
+  host: 127.0.0.1
   port: 8090
   tags: ['web']
 consul:
+  address: consul.dev.xbt-dev.top
   host: 39.103.176.179
   port: 10008
   check:

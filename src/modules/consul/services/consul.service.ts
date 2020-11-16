@@ -47,7 +47,11 @@ export class ConsulService {
   private createConsul(config): Consul {
     // 创建consul
     const consulConfig = config.get('consul')
-    const option = { host: consulConfig.host, port: consulConfig.port }
+
+    const option = consulConfig.address
+      ? { baseUrl: `${consulConfig.secure ? 'https:' : 'http:'}//${consulConfig.address}/v1` }
+      : { host: consulConfig.host, port: consulConfig.port }
+
     return new Consul({
       ...option,
       promisify: true
